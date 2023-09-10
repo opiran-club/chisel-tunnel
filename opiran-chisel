@@ -76,7 +76,7 @@ function uninstall_chisel() {
 		    echo -e "${RED} 1)${NC} => ${YELLOW}Install & Config Chisel Server{NC}"
             echo -e "${RED} 2)${NC} => ${YELLOW}Install & Config Chisel Client${NC}"
             echo -e "${RED} 3)${NC} => ${YELLOW}Uninstall Chisel and rolling back the resolv${NC}"
-            echo -e "${RED} M)${NC} => ${GREEN}MENU${NC}"
+            echo -e "${RED} E)${NC} => ${GREEN}Exit${NC}"
             echo ""
             echo -e "${RED}────────────────────────────────────────────────────────${NC}"
             echo ""
@@ -125,9 +125,9 @@ function uninstall_chisel() {
                 sleep 1
                 continue
                 ;;
-            [Mm])
+            [Ee])
                 echo ""
-                echo -e "${YELLOW}PRESS.....${NC} ${RED} ENTER ${NC} ${YELLOW}.....TO GET BACK THE MAIN MENU${NC}"
+                echo -e "${YELLOW}PRESS.....${NC} ${RED} ENTER ${NC} ${YELLOW}.....TO EXIT CHISEL SETUP${NC}"
                 read -s -r -p ""
                 sleep 1
                 break
