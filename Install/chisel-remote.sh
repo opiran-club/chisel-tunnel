@@ -179,27 +179,27 @@ move_binary() {
 	FTYPE=""
 	case "${OS}_${ARCH}" in
 	"darwin_amd64")
-		URL="https://raw.githubusercontent.com/opiran-club/opiran-panel/main/Install/chisel_1.7.7_darwin_amd64.gz"
+		URL="https://raw.githubusercontent.com/opiran-club/chisel-tunnel/main/Install/chisel_1.7.7_darwin_amd64.gz"
 		FTYPE=".gz"
 		;;
 	"darwin_arm64")
-		URL="https://raw.githubusercontent.com/opiran-club/opiran-panel/main/Install/chisel_1.7.7_darwin_amd64.gz"
+		URL="https://raw.githubusercontent.com/opiran-club/chisel-tunnel/main/Install/chisel_1.7.7_darwin_amd64.gz"
 		FTYPE=".gz"
 		;;
 	"linux_386")
-		URL="https://raw.githubusercontent.com/opiran-club/opiran-panel/main/Install/chisel_1.7.7_linux_386.gz"
+		URL="https://raw.githubusercontent.com/opiran-club/chisel-tunnel/main/Install/chisel_1.7.7_linux_386.gz"
 		FTYPE=".gz"
 		;;
 	"linux_amd64")
-		URL="https://raw.githubusercontent.com/opiran-club/opiran-panel/main/Install/chisel_1.7.7_linux_amd64.gz"
+		URL="https://raw.githubusercontent.com/opiran-club/chisel-tunnel/main/Install/chisel_1.7.7_linux_amd64.gz"
 		FTYPE=".gz"
 		;;
 	"linux_arm64")
-		URL="https://raw.githubusercontent.com/opiran-club/opiran-panel/main/Install/chisel_1.7.7_linux_arm64.gz"
+		URL="https://raw.githubusercontent.com/opiran-club/chisel-tunnel/main/Install/chisel_1.7.7_linux_arm64.gz"
 		FTYPE=".gz"
 		;;
 	"linux_arm")
-		URL="https://raw.githubusercontent.com/opiran-club/opiran-panel/main/Install/chisel_1.7.7_linux_armv6.gz"
+		URL="https://raw.githubusercontent.com/opiran-club/chisel-tunnel/main/Install/chisel_1.7.7_linux_armv6.gz"
 		FTYPE=".gz"
 		;;
 	*) fail "No asset for platform ${OS}-${ARCH}";;
