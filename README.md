@@ -6,7 +6,7 @@
 ###  ‼️ INSTRUCTION ‼️
 
 ```
-bash <(curl -s -L https://raw.githubusercontent.com/opiran-club/chisel-tunnel/main/frp-installer)
+bash <(curl -s -L https://raw.githubusercontent.com/opiran-club/chisel-tunnel/main/opiran-chisel)
 ```
 
    
