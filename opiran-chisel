@@ -98,7 +98,7 @@ function uninstall_chisel() {
             echo -e "${RED} NOW IF YOU ARE SURE TO INSTALL CHISEL SERVER, Press ENTER to continue${NC}"
             read -s -r -p ""
             sleep 0.5
-            curl -LO https://github.com/opiran-club/opiran-panel/blob/main/Install/chisel-remote.sh && chmod +x ./chisel-remote.sh && ./chisel-remote.sh
+            curl -LO https://github.com/opiran-club/chisel-tunnel/blob/main/Install/chisel-remote.sh && chmod +x ./chisel-remote.sh && ./chisel-remote.sh
             echo -e "${YELLOW} CHISEL SUCCESSFULY CREATED, IF YOU COPY THE FINGER PRINTS AND PORT THEN PRESS.....${NC} ${RED} ENTER ${NC} ${YELLOW}.....TO GET BACK THE CHISEL MENU${NC}"
             read -s -r -p ""
             sleep 0.5
@@ -112,7 +112,7 @@ function uninstall_chisel() {
             echo -e "${RED} NOW IF YOU ARE SURE TO INSTALL CHISEL CLIENT, Press ENTER to continue${NC}"
             read -s -r -p ""
             sleep 0.5
-            wget https://github.com/opiran-club/opiran-panel/blob/main/Install/chisel-client.sh && chmod +x chisel-client.sh && ./chisel-client.sh
+            wget https://github.com/opiran-club/chisel-tunnel/blob/main/Install/chisel-client.sh && chmod +x chisel-client.sh && ./chisel-client.sh
             echo -e "${YELLOW} CHISEL CLIENT SUCCESSFULY CREATED, PRESS.....${NC} ${RED} ENTER ${NC} ${YELLOW}.....TO GET BACK THE CHISEL MENU${NC}"
             read -s -r -p ""
             sleep 0.5
