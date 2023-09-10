@@ -73,14 +73,14 @@ function uninstall_chisel() {
             echo -e "         ${MAGENTA}───── CHISEL ─────${NC}"
             echo -e "${RED}────────────────────────────────────────────────────────${NC}"
             echo ""
-		    echo -e "${RED} 1)${NC} => ${YELLOW}Install & Config Chisel Server{NC}"
+	    echo -e "${RED} 1)${NC} => ${YELLOW}Install & Config Chisel Server{NC}"
             echo -e "${RED} 2)${NC} => ${YELLOW}Install & Config Chisel Client${NC}"
             echo -e "${RED} 3)${NC} => ${YELLOW}Uninstall Chisel and rolling back the resolv${NC}"
-            echo -e "${RED} E)${NC} => ${GREEN}Exit${NC}"
+            echo -e "${RED} 0)${NC} => ${GREEN}Exit${NC}"
             echo ""
             echo -e "${RED}────────────────────────────────────────────────────────${NC}"
             echo ""
-		    echo -ne "${YELLOW} WHATS YOUR CHOICE ?${NC} :"
+	    echo -ne "${YELLOW} WHATS YOUR CHOICE ?${NC} :"
             echo ""
             echo ""
 		    read -r response
@@ -125,7 +125,7 @@ function uninstall_chisel() {
                 sleep 1
                 continue
                 ;;
-            [Ee])
+            0)
                 echo ""
                 echo -e "${YELLOW}PRESS.....${NC} ${RED} ENTER ${NC} ${YELLOW}.....TO EXIT CHISEL SETUP${NC}"
                 read -s -r -p ""
