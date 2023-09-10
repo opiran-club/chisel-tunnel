@@ -1,0 +1,144 @@
+#!/bin/bash
+
+# Color variables for better readability
+WHITE="\e[37m"
+BLUE="\e[34m"
+MAGENTA="\e[35m"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+RED="\e[31m"
+CYAN="\e[36m"
+BLACK="\e[30m"
+PINK="\e[38;5;206m"
+ORANGE="\e[38;5;208m"
+NC="\e[0m"
+
+# Function to display a progress bar
+display_progress() {
+    local duration=$1
+    local sleep_interval=0.1
+    local progress=0
+    local bar_length=40
+
+    while [ $progress -lt $duration ]; do
+        echo -ne "\r[${YELLOW}"
+        for ((i = 0; i < bar_length; i++)); do
+            if [ $i -lt $((progress * bar_length / duration)) ]; then
+                echo -ne "#"
+            else
+                echo -ne "-"
+            fi
+        done
+        echo -ne "${RED}] ${progress}%"
+        progress=$((progress + 1))
+        sleep $sleep_interval
+    done
+    echo -ne "\r[${YELLOW}"
+    for ((i = 0; i < bar_length; i++)); do
+        echo -ne "#"
+    done
+    echo -ne "${RED}] ${progress}%"
+    echo
+}
+
+# Function to install required packages
+install_dependencies() {
+    local packages=("curl" "wget" "gzip" "tar" "unzip")
+    echo -e "${YELLOW}" "Installing required packages..."
+    for package in "${packages[@]}"; do
+        apt-get install -y "$package"
+    done
+    echo -e "${GREEN}" "Required packages installed successfully."
+}
+
+# Function to uninstall Chisel
+function uninstall_chisel() {
+    if [[ -f "/usr/local/bin/chisel" ]]; then
+        rm -f "/usr/local/bin/chisel"
+        rm -f "/etc/systemd/system/chisel.service"
+        systemctl daemon-reload
+        systemctl disable chisel
+        rm -rf /etc/resolv.conf && touch /etc/resolv.conf && echo 'nameserver 8.8.8.8' >> /etc/resolv.conf && echo 'nameserver 8.8.4.4' >> /etc/resolv.conf
+        echo -e "${GREEN}Chisel has been uninstalled.${NC}"
+    else
+        echo -e "${RED}Chisel is not installed.${NC}"
+    fi
+}
+
+# Main script
+    manage_chisel() {
+        while true; do
+		    clear
+            echo -e "${GREEN}────────────────────────────────────────────────────────${NC}"
+            echo -e "         ${MAGENTA}───── CHISEL ─────${NC}"
+            echo -e "${RED}────────────────────────────────────────────────────────${NC}"
+            echo ""
+		    echo -e "${RED} 1)${NC} => ${YELLOW}Install & Config Chisel Server{NC}"
+            echo -e "${RED} 2)${NC} => ${YELLOW}Install & Config Chisel Client${NC}"
+            echo -e "${RED} 3)${NC} => ${YELLOW}Uninstall Chisel and rolling back the resolv${NC}"
+            echo -e "${RED} M)${NC} => ${GREEN}MENU${NC}"
+            echo ""
+            echo -e "${RED}────────────────────────────────────────────────────────${NC}"
+            echo ""
+		    echo -ne "${YELLOW} WHATS YOUR CHOICE ?${NC} :"
+            echo ""
+            echo ""
+		    read -r response
+		    case "$response" in
+            1)
+            install_dependencies | display_progress 50
+            echo -e "${RED} TIP ${NC}"
+            echo -e "        ${YELLOW}DONT FORGET TO COPY FINGER PRINT AT THE END OF INSTALLATION${NC}"
+            echo ""
+            echo -e "${CYAN}YOU SHOULD SEE CHISEL SERVER ENABLED AND RUNNING AND FINGERPRINT SOMETHING LIKE BELOW${NC}"
+            echo -e "${GREEN}server: Fingerprint .............${NC}"
+            echo -e "${CYAN}and${NC}"
+            echo -e "${GREEN}server: Listening on http://0.0.0.0:PORT${NC}"
+            echo ""
+            echo -e "${RED} NOW IF YOU ARE SURE TO INSTALL CHISEL SERVER, Press ENTER to continue${NC}"
+            read -s -r -p ""
+            sleep 0.5
+            curl -LO https://github.com/opiran-club/opiran-panel/blob/main/Install/chisel-remote.sh && chmod +x ./chisel-remote.sh && ./chisel-remote.sh
+            echo -e "${YELLOW} CHISEL SUCCESSFULY CREATED, IF YOU COPY THE FINGER PRINTS AND PORT THEN PRESS.....${NC} ${RED} ENTER ${NC} ${YELLOW}.....TO GET BACK THE CHISEL MENU${NC}"
+            read -s -r -p ""
+            sleep 0.5
+            continue
+            ;;
+            2)
+            install_dependencies | display_progress 50
+            echo -e "${RED} TIP ${NC}"
+            echo -e "        ${YELLOW}DONT FORGET TO PUT CHISEL SERVER DETAILES (FINGER PRINT, IP ADDRESS, PORT) ${NC}"
+            echo ""
+            echo -e "${RED} NOW IF YOU ARE SURE TO INSTALL CHISEL CLIENT, Press ENTER to continue${NC}"
+            read -s -r -p ""
+            sleep 0.5
+            wget https://github.com/opiran-club/opiran-panel/blob/main/Install/chisel-client.sh && chmod +x chisel-client.sh && ./chisel-client.sh
+            echo -e "${YELLOW} CHISEL CLIENT SUCCESSFULY CREATED, PRESS.....${NC} ${RED} ENTER ${NC} ${YELLOW}.....TO GET BACK THE CHISEL MENU${NC}"
+            read -s -r -p ""
+            sleep 0.5
+            continue
+            ;;
+            3)
+                uninstall_chisel | display_progress 50
+                echo -e "${YELLOW}PRESS.....${NC} ${RED} ENTER ${NC} ${YELLOW}.....TO GET BACK THE MAIN MENU${NC}"
+                read -s -r -p ""
+                sleep 1
+                continue
+                ;;
+            [Mm])
+                echo ""
+                echo -e "${YELLOW}PRESS.....${NC} ${RED} ENTER ${NC} ${YELLOW}.....TO GET BACK THE MAIN MENU${NC}"
+                read -s -r -p ""
+                sleep 1
+                break
+                ;;
+            *)
+                echo -e "${RED} Invalid choice. Please enter a valid option.${NC}"
+                sleep 1
+                continue
+                ;;
+
+            esac
+    done
+}
+manage_chisel
